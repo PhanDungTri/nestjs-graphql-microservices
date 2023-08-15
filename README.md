@@ -22,6 +22,12 @@ As this project is using **Apollo Federation**, it follows the **Separation of C
 
 ## Run the project
 
+Install NestJS CLI globally.
+
+```
+npm i -g @nest/cli
+```
+
 Install required packages.
 
 ```bash
