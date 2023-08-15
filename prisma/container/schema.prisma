@@ -1,0 +1,21 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../node_modules/.prisma/client/container"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("CONTAINER_DATABASE_URL")
+}
+
+model Container {
+  containerNo String   @id @map("container_no")
+  operator    String
+  length      Int
+  type        String
+  status      String
+  dateCreated DateTime @default(now()) @map("date_created") @db.Timestamptz(6)
+  dateUpdated DateTime @default(now()) @map("date_updated") @db.Timestamptz(6)
+
+  @@map("container")
+}

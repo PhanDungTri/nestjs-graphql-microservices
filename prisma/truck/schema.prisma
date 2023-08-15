@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../node_modules/.prisma/client/truck"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("TRUCK_DATABASE_URL")
+}
+
+model Truck {
+  plateNo     String    @id @map("plate_no")
+  carrier     String
+  lastInDate  DateTime? @map("last_in_date") @db.Timestamptz(6)
+  lastOutDate DateTime? @map("last_out_date") @db.Timestamptz(6)
+  dateCreated DateTime  @default(now()) @map("date_created") @db.Timestamptz(6)
+  dateUpdated DateTime  @default(now()) @map("date_updated") @db.Timestamptz(6)
+
+  @@map("truck")
+}

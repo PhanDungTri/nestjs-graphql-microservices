@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/gateway/src",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "webpack": true,
+    "tsConfigPath": "apps/gateway/tsconfig.app.json"
+  },
+  "monorepo": true,
+  "root": "apps/gateway",
+  "projects": {
+    "gateway": {
+      "type": "application",
+      "root": "apps/gateway",
+      "entryFile": "main",
+      "sourceRoot": "apps/gateway/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/gateway/tsconfig.app.json"
+      }
+    },
+    "truck": {
+      "type": "application",
+      "root": "apps/truck",
+      "entryFile": "main",
+      "sourceRoot": "apps/truck/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/truck/tsconfig.app.json",
+        "assets": [
+          {
+            "include": "./.env.yml",
+            "outDir": "./dist/apps/truck"
+          }
+        ]
+      }
+    },
+    "models": {
+      "type": "library",
+      "root": "libs/models",
+      "entryFile": "index",
+      "sourceRoot": "libs/models/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/models/tsconfig.lib.json"
+      }
+    },
+    "common-modules": {
+      "type": "library",
+      "root": "libs/common-modules",
+      "entryFile": "index",
+      "sourceRoot": "libs/common-modules/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/common-modules/tsconfig.lib.json"
+      }
+    },
+    "container": {
+      "type": "application",
+      "root": "apps/container",
+      "entryFile": "main",
+      "sourceRoot": "apps/container/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/container/tsconfig.app.json"
+      }
+    },
+    "job": {
+      "type": "application",
+      "root": "apps/job",
+      "entryFile": "main",
+      "sourceRoot": "apps/job/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/job/tsconfig.app.json"
+      }
+    },
+    "constants": {
+      "type": "library",
+      "root": "libs/constants",
+      "entryFile": "index",
+      "sourceRoot": "libs/constants/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/constants/tsconfig.lib.json"
+      }
+    },
+    "dto": {
+      "type": "library",
+      "root": "libs/dto",
+      "entryFile": "index",
+      "sourceRoot": "libs/dto/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/dto/tsconfig.lib.json"
+      }
+    },
+    "utils": {
+      "type": "library",
+      "root": "libs/utils",
+      "entryFile": "index",
+      "sourceRoot": "libs/utils/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/utils/tsconfig.lib.json"
+      }
+    }
+  }
+}

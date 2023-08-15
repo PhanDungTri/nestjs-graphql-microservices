@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../node_modules/.prisma/client/job"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("JOB_DATABASE_URL")
+}
+
+model Job {
+  id            String         @id
+  truckPlateNo  String         @map("truck_plate_no")
+  dateCompleted DateTime?      @map("date_completed") @db.Timestamptz(6)
+  status        String         @default("P")
+  type          String
+  dateCreated   DateTime       @default(now()) @map("date_created") @db.Timestamptz(6)
+  dateUpdated   DateTime       @default(now()) @map("date_updated") @db.Timestamptz(6)
+  containers    JobContainer[]
+
+  @@map("job")
+}
+
+model JobContainer {
+  id              String @id
+  jobID           String @map("job_id")
+  containerNo     String @map("container_no")
+  positionOnTruck String @map("position_on_truck")
+  job             Job    @relation(fields: [jobID], references: [id])
+
+  @@map("job_container")
+}
